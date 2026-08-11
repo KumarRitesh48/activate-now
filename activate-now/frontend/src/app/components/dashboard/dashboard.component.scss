@@ -1,0 +1,223 @@
+:host {
+  display: block;
+  font-family: 'Segoe UI', Roboto, -apple-system, sans-serif;
+}
+
+.phone-frame {
+  max-width: 375px;
+  margin: 0 auto;
+  min-height: 100vh;
+  background: #f4f6fb;
+  position: relative;
+  overflow: hidden;
+}
+
+// Orange-to-pink gradient header, as in Figma
+.header-gradient {
+  height: 96px;
+  background: linear-gradient(135deg, #f97362 0%, #e8536f 60%, #d8456f 100%);
+  border-bottom-left-radius: 28px;
+  border-bottom-right-radius: 28px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.school-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.school-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #ffffff;
+  flex-shrink: 0;
+}
+
+.school-name {
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.content {
+  padding: 0 20px 32px;
+  margin-top: -36px;
+}
+
+// White floating profile card
+.profile-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  box-shadow: 0 8px 24px rgba(20, 20, 43, 0.08);
+  margin-bottom: 20px;
+}
+
+.profile-photo {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.student-name {
+  font-weight: 700;
+  font-size: 16px;
+  color: #1a1a2e;
+}
+
+.class-section {
+  font-size: 13px;
+  color: #8a8aa3;
+  margin-top: 2px;
+}
+
+.pin-icon {
+  margin-right: 4px;
+  font-size: 12px;
+}
+
+// Purple-to-magenta fee widget, as in Figma
+.fee-widget {
+  background: linear-gradient(160deg, #8a2ea6 0%, #a8319b 45%, #c23a8e 100%);
+  border-radius: 20px;
+  padding: 24px 20px;
+  position: relative;
+  color: #ffffff;
+  overflow: hidden;
+
+  // Faint decorative circles in the bottom-right, matching the Figma card
+  &::before {
+    content: '';
+    position: absolute;
+    right: -30px;
+    bottom: -40px;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    z-index: 0;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    right: 10px;
+    bottom: -10px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.10);
+    z-index: 0;
+  }
+}
+
+.fee-badge,
+.fee-heading,
+.interest-row,
+.fee-footer {
+  position: relative;
+  z-index: 1;
+}
+
+.fee-badge {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.fee-heading {
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.35;
+  max-width: 75%;
+  margin-bottom: 18px;
+}
+
+.interest-row {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+
+.interest-value {
+  font-size: 44px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.interest-label {
+  font-size: 12px;
+  line-height: 1.4;
+  opacity: 0.9;
+}
+
+.fee-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.annual-fee-label {
+  font-size: 12px;
+  opacity: 0.85;
+  margin-bottom: 2px;
+}
+
+.annual-fee-value {
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.activate-btn {
+  background: #ffffff;
+  color: #8a2ea6;
+  border: none;
+  border-radius: 24px;
+  padding: 12px 22px;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+
+  &:hover:not(:disabled) {
+    opacity: 0.9;
+  }
+
+  &.activated {
+    background: #2bb673;
+    color: #ffffff;
+    cursor: default;
+  }
+
+  &:disabled {
+    cursor: default;
+  }
+}
+
+.state-msg {
+  padding: 40px 20px;
+  text-align: center;
+  color: #8a8aa3;
+  font-size: 14px;
+
+  &.error {
+    color: #d8456f;
+  }
+}

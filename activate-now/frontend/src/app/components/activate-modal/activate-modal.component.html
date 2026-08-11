@@ -1,0 +1,103 @@
+<div class="modal-backdrop">
+  <div class="modal-frame">
+
+    <!-- Same header + profile card as dashboard, dimmed behind the sheet -->
+    <div class="header-gradient">
+      <div class="school-row">
+        <div class="school-avatar"></div>
+        <span class="school-name">{{ schoolName }}</span>
+      </div>
+    </div>
+
+    <div class="profile-card">
+      <img class="profile-photo" [src]="profilePhotoUrl" alt="Student profile" />
+      <div class="profile-info">
+        <div class="student-name">{{ studentName }}</div>
+        <div class="class-section"><span class="pin-icon">&#128205;</span>{{ classSection }}</div>
+      </div>
+    </div>
+
+    <!-- Bottom sheet form -->
+    <div class="sheet">
+      <div class="sheet-header">
+        <span class="sheet-title">Please enter your details below</span>
+        <button class="close-btn" (click)="onCancel()" aria-label="Close">&#10005;</button>
+      </div>
+
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+        <div class="field">
+          <label for="phoneNumber">Phone Number</label>
+          <div class="input-row">
+            <input
+              id="phoneNumber"
+              type="text"
+              formControlName="phoneNumber"
+              placeholder="+91 XXXX-XXXXX" />
+            <span class="tick" *ngIf="isFieldValid('phoneNumber')">&#10003;</span>
+          </div>
+          <div class="error-text" *ngIf="isFieldInvalid('phoneNumber')">
+            {{ getErrorMessage('phoneNumber') }}
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="panNumber">PAN Card Number</label>
+          <div class="input-row">
+            <input
+              id="panNumber"
+              type="text"
+              formControlName="panNumber"
+              placeholder="EEAPS6789R"
+              style="text-transform: uppercase;" />
+          </div>
+          <div class="error-text" *ngIf="isFieldInvalid('panNumber')">
+            {{ getErrorMessage('panNumber') }}
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="nameAsInPan">Name as in PAN Card</label>
+          <div class="input-row">
+            <input
+              id="nameAsInPan"
+              type="text"
+              formControlName="nameAsInPan"
+              placeholder="KRISHNA KUMAR SINGH" />
+          </div>
+          <div class="error-text" *ngIf="isFieldInvalid('nameAsInPan')">
+            {{ getErrorMessage('nameAsInPan') }}
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="email">Email</label>
+          <div class="input-row">
+            <input
+              id="email"
+              type="text"
+              formControlName="email"
+              placeholder="xyz@gmail.com" />
+            <span class="tick" *ngIf="isFieldValid('email')">&#10003;</span>
+          </div>
+          <div class="error-text" *ngIf="isFieldInvalid('email')">
+            {{ getErrorMessage('email') }}
+          </div>
+        </div>
+
+        <div class="submit-error" *ngIf="submitError">{{ submitError }}</div>
+
+        <div class="action-row">
+          <button type="button" class="cancel-btn" (click)="onCancel()" [disabled]="submitting">
+            Cancel
+          </button>
+          <button type="submit" class="activate-btn" [disabled]="submitting">
+            {{ submitting ? 'Submitting...' : 'Activate Now' }}
+          </button>
+        </div>
+
+      </form>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,66 @@
+<div class="phone-frame">
+
+  <!-- Header: gradient band + school name -->
+  <div class="header-gradient">
+    <div class="school-row">
+      <div class="school-avatar"></div>
+      <span class="school-name">{{ dashboard?.schoolName || 'School name' }}</span>
+    </div>
+  </div>
+
+  <div class="content" *ngIf="!loading && dashboard">
+
+    <!-- Profile card -->
+    <div class="profile-card">
+      <img class="profile-photo" [src]="dashboard.profilePhotoUrl" alt="Student profile" />
+      <div class="profile-info">
+        <div class="student-name">{{ dashboard.studentName }}</div>
+        <div class="class-section">
+          <span class="pin-icon">&#128205;</span>{{ dashboard.classSection }}
+        </div>
+      </div>
+    </div>
+
+    <!-- Fee financing widget -->
+    <div class="fee-widget">
+      <div class="fee-badge">&#10003;</div>
+      <div class="fee-heading">Now pay your<br />fee monthly with &#64;</div>
+
+      <div class="interest-row">
+        <span class="interest-value">{{ dashboard.interestRatePercent }}%</span>
+        <span class="interest-label">Interest<br />pre-approved credit line</span>
+      </div>
+
+      <div class="fee-footer">
+        <div class="annual-fee">
+          <div class="annual-fee-label">Annual Fee</div>
+          <div class="annual-fee-value">&#8377; {{ dashboard.annualFee | number:'1.0-0' }}</div>
+        </div>
+
+        <button
+          class="activate-btn"
+          [class.activated]="dashboard.activated"
+          (click)="openModal()"
+          [disabled]="dashboard.activated">
+          {{ dashboard.activated ? 'Activated' : 'Activate Now' }}
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="state-msg" *ngIf="loading">Loading dashboard...</div>
+  <div class="state-msg error" *ngIf="error">{{ error }}</div>
+
+  <app-activate-modal
+    *ngIf="isModalOpen && dashboard"
+    [studentId]="dashboard.studentId"
+    [schoolName]="dashboard.schoolName"
+    [studentName]="dashboard.studentName"
+    [classSection]="dashboard.classSection"
+    [profilePhotoUrl]="dashboard.profilePhotoUrl"
+    (cancelled)="closeModal()"
+    (activated)="onActivated()">
+  </app-activate-modal>
+
+</div>
